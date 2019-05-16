@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="cmBLOGj">
 <meta property="og:description" content="将博客部署到github 配置github进入https://github.com/settings/key 点击New SSH key输入Title&amp;amp;Key，但是目前我们没有Key，接着往下看 把现有的shh key都删掉rm -rf ~/.ssh/* 运行ssh -keygen -t rsa -b 4096 -C&amp;#39;你的邮箱&amp;#39; 回车四次 运行命令行得到密钥串，复制cat">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-05-16T03:06:08.000Z">
+<meta property="og:updated_time" content="2019-05-16T03:25:23.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="用hexo,github搭建博客（中）">
 <meta name="twitter:description" content="将博客部署到github 配置github进入https://github.com/settings/key 点击New SSH key输入Title&amp;amp;Key，但是目前我们没有Key，接着往下看 把现有的shh key都删掉rm -rf ~/.ssh/* 运行ssh -keygen -t rsa -b 4096 -C&amp;#39;你的邮箱&amp;#39; 回车四次 运行命令行得到密钥串，复制cat">
@@ -92,7 +92,8 @@
 <li>把现有的shh key都删掉<br><code>rm -rf ~/.ssh/*</code></li>
 <li>运行<br><code>ssh -keygen -t rsa -b 4096 -C&#39;你的邮箱&#39;</code></li>
 <li>回车四次</li>
-<li>运行命令行得到密钥串，复制<br><code>cat ~/.ssh/id_rsa.pub</code><br>8.回到第二步，将复制的密钥串填入，点击Add SSH KEY</li>
+<li>运行命令行得到密钥串，复制<br><code>cat ~/.ssh/id_rsa.pub</code></li>
+<li>回到第二步，将复制的密钥串填入，点击Add SSH KEY</li>
 <li>运行命令行建立连接<br><code>ssh -T git@github.com</code></li>
 <li>如果看到<code>Permission denied(publickey)</code>说明你失败惹，请回到第一步大不了重新再来；否则你就成功啦～撒花～</li>
 <li>在GitHub新建仓库，且仓库的命名必须是以下格式，下一步记得点SSH！<br><code>你的github用户名.github.io</code></li>
@@ -109,7 +110,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/05/16/用hexo-github搭建博客（中）/" data-id="cjvq335i80002p28juv4gyvq5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/05/16/用hexo-github搭建博客（中）/" data-id="cjvq3dhff0000rd8jvfkdwimg" class="article-share-link">Share</a>
       
       
     </footer>
@@ -118,19 +119,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2019/05/16/用hexo-github搭建博客（上）/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          用hexo,github搭建博客（上）
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/05/15/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2019/05/16/用hexo-github搭建博客（上）/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Hello World</div>
+      <div class="article-nav-title">用hexo,github搭建博客（上）</div>
     </a>
   
 </nav>
@@ -167,11 +159,11 @@
       <ul>
         
           <li>
-            <a href="/2019/05/16/用hexo-github搭建博客（上）/">用hexo,github搭建博客（上）</a>
+            <a href="/2019/05/16/用hexo-github搭建博客（中）/">用hexo,github搭建博客（中）</a>
           </li>
         
           <li>
-            <a href="/2019/05/16/用hexo-github搭建博客（中）/">用hexo,github搭建博客（中）</a>
+            <a href="/2019/05/16/用hexo-github搭建博客（上）/">用hexo,github搭建博客（上）</a>
           </li>
         
           <li>
