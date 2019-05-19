@@ -62,6 +62,116 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-CSS简单布局" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/05/19/CSS简单布局/" class="article-date">
+  <time datetime="2019-05-19T02:59:05.000Z" itemprop="datePublished">2019-05-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/19/CSS简单布局/">CSS简单布局</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li>左右布局</li>
+</ol>
+<ul>
+<li><ol>
+<li>左盒子向左浮动，右盒子overflow:hidden;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">.left &#123; </span><br><span class="line">    float: left;</span><br><span class="line">&#125;</span><br><span class="line">.right &#123; </span><br><span class="line">    overflow: hidden;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>左盒子向左浮动，右盒子margin-left;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">.left &#123; </span><br><span class="line">    float: left; </span><br><span class="line">&#125;</span><br><span class="line">.right &#123; </span><br><span class="line">    margin-left: 100px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>左盒子绝对定位，右盒子margin-left<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.left &#123; </span><br><span class="line">    position: absolute; </span><br><span class="line">    top: 0; </span><br><span class="line">    left: 0; </span><br><span class="line">&#125;</span><br><span class="line">.right &#123; </span><br><span class="line">    margin-left: 100px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><ol start="4">
+<li>左右两边绝对定位<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">.left &#123; </span><br><span class="line">    position: absolute; </span><br><span class="line">    top: 0; </span><br><span class="line">    left: 0;</span><br><span class="line">&#125;</span><br><span class="line">.right &#123;</span><br><span class="line">    position: absolute; </span><br><span class="line">    top: 0; </span><br><span class="line">    right: 0;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+</ul>
+<ol start="2">
+<li>左中右布局</li>
+</ol>
+<ul>
+<li><ol>
+<li>float: left; <em>让三个盒子都向左浮动，且width之和小于等于父级width</em></li>
+</ol>
+</li>
+<li><ol start="2">
+<li>display: inline; <em>让三个盒子变成内联元素一行显示，width之和小于等于父级width</em></li>
+</ol>
+</li>
+</ul>
+<ol start="3">
+<li>水平居中</li>
+</ol>
+<ul>
+<li><ol>
+<li>text-align: center; <em>子元素水平居中</em></li>
+</ol>
+</li>
+<li><ol start="2">
+<li>margin： 0 auto; <em>设置样式的盒子在父元素内水平居中</em></li>
+</ol>
+</li>
+</ul>
+<ol start="4">
+<li>垂直居中</li>
+</ol>
+<ul>
+<li><ol>
+<li>line-height; <em>文字在行高内垂直居中</em></li>
+</ol>
+</li>
+<li><ol start="2">
+<li>绝地定位+top: 50%;+lefe: 50%;</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>display: table-cell;vertical-align: middle; <em>将盒子设置为单元格，再利用单元格的垂直属性</em> </li>
+</ol>
+</li>
+</ul>
+<ol start="5">
+<li>其他小技巧</li>
+</ol>
+<ul>
+<li>给元素设置浮动时必须为其父元素添加伪类，其样式如下<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.clearfix::after &#123;</span><br><span class="line">    content: &quot;&quot;;</span><br><span class="line">    display: block;</span><br><span class="line">    clear: both;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/05/19/CSS简单布局/" data-id="cjvukog0000023m8jy5xzgt8x" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-HTML常用标签" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/05/16/HTML常用标签/" class="article-date">
@@ -157,7 +267,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/05/16/HTML常用标签/" data-id="cjvqlyhuh00019l8j82n2kmt8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/05/16/HTML常用标签/" data-id="cjvukofy000003m8jsx5wk8xq" class="article-share-link">Share</a>
       
       
     </footer>
@@ -207,7 +317,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/05/16/用hexo-github搭建博客（上）/" data-id="cjvqlyhrt00009l8jn2ykst1o" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/05/16/用hexo-github搭建博客（上）/" data-id="cjvukofzw00013m8j0zaayanb" class="article-share-link">Share</a>
       
       
     </footer>
@@ -263,7 +373,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/05/16/用hexo-github搭建博客（中）/" data-id="cjvqlyhuk00029l8jm4nogzbl" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/05/16/用hexo-github搭建博客（中）/" data-id="cjvukog0200033m8jf2xckcrj" class="article-share-link">Share</a>
       
       
     </footer>
@@ -308,7 +418,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/05/15/hello-world/" data-id="cjvqlyhun00039l8jrqfvk8g9" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/05/15/hello-world/" data-id="cjvukog2200043m8je2egasek" class="article-share-link">Share</a>
       
       
     </footer>
@@ -347,6 +457,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2019/05/19/CSS简单布局/">CSS简单布局</a>
+          </li>
         
           <li>
             <a href="/2019/05/16/HTML常用标签/">HTML常用标签</a>
