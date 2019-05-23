@@ -62,6 +62,84 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-JS基础-数据类型" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/05/23/JS基础-数据类型/" class="article-date">
+  <time datetime="2019-05-23T13:01:52.000Z" itemprop="datePublished">2019-05-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/23/JS基础-数据类型/">JS基础_数据类型</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="JS基础-数据类型"><a href="#JS基础-数据类型" class="headerlink" title="JS基础_数据类型"></a>JS基础_数据类型</h3><ol>
+<li>历史</li>
+</ol>
+<ul>
+<li>1991 李爵士 WWW</li>
+<li>1992 同事 CSS</li>
+<li>1993 W3C</li>
+<li>1995 网景公司/Netscape<br>  1.1 事件：发布Navigator浏览器 <code>支持脚本</code><br>  1.2 发明者：Branden Eich，js之父<br>  1.3 设计时间：10天<br>  1.4 JS第一版：Mocha，表面上类似Java -&gt; 改名：JavaScript<br>  1.5 Bug：由于Unicode,uft-8晚于js发布，所以js用了其他落后的编码方式</li>
+<li>1996 MS发布IE，仿照js发明JScript，竞争市场<br>  网景失败，浏览器开源（Firefox）<br>  为了抵制MS，向ECMA（欧洲计算机制造商协会）申报标准：<code>ECMAScript</code></li>
+<li>IE5.5，MS推出js发请求功能</li>
+<li>2004年，Gmail，推出网页上的程序，利用js发请求功能<br><code>js：正式编程语言</code><br><code>前端诞生：Front-end,以js为生</code></li>
+<li>2010左右，进入中国市场，后端-&gt;前端</li>
+<li>js bug：<br>都是全局变量，互相覆盖干扰（没有模块化）<br>标准库缺少（内置代码少）</li>
+<li>ECMAScript升级<br>之前通用：ECMAScript3<br>升级后：ECMAScript5（改变小）<br>再次升级：ECMAScript6，成为<code>现代编程语言</code><br>（起因：Rail社区用ruby发明CoffeeScript，js改良版）</li>
+</ul>
+<ol start="2">
+<li>数据类型<br> 2.1 number 数字<br> 2.2 string 字符串<br> 2.3 boolean 布尔<br> 2.4 Symbol 符号<br> 2.5 null<br> 2.6 undefined<br> 2.7 object 对象<br><code>object是复杂类型，其余基本类型，复杂类型由基本类型组成</code></li>
+</ol>
+<ul>
+<li>number<br>十进制<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1 = 1 + .1</span><br><span class="line">123 = 123e2</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>二进制 0b开头<br>八进制 0开头<br>十六进制 0x开头</p>
+<ul>
+<li>String 字符串<br><strong>单行字符串</strong><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&apos;hello&apos; 单引号</span><br><span class="line">&quot;hello&quot; 双引号</span><br><span class="line">&apos;&apos; 空字符串  //  可以赋值&apos;&apos;=&apos;cmokj&apos; 成立</span><br><span class="line">&quot;&quot; 空字符串</span><br><span class="line">&apos; &apos; 空格字符串  </span><br><span class="line">&quot; &quot; 空格字符串</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>多行字符串</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">字符串内不能+回车换行，可以+\换行，且\后不能有空格，容易出bug</span><br><span class="line">var s1 = &apos;1234 \    </span><br><span class="line">        6789&apos;;</span><br><span class="line"></span><br><span class="line">ES6标准，更容易出bug，反引号，包含回车字符，第二行向左置顶，否则空格包含在字符串内</span><br><span class="line">var s3 = `1234↵</span><br><span class="line">6789`</span><br><span class="line"></span><br><span class="line">最优解</span><br><span class="line">var s2 = &apos;1234&apos; + &apos;6789&apos;;</span><br></pre></td></tr></table></figure></p>
+<p><strong>转义符</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">在表达的字符前面 + \</span><br><span class="line">var a = &quot;\\&quot;;表示 \，只有一个字符，转义字符不算字符</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>布尔<br>布尔，数学家，发明逻辑学<br>逻辑值:true，false<br>真值表：&amp;&amp; || </li>
+<li><p>null 和 undefined<br>两个类型都只有一个值：本身</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">区别</span><br><span class="line">    i. 变量没有赋值 —— undefined 语法</span><br><span class="line">    ii. object，不想赋值 —— null 惯例</span><br><span class="line">       非object，不想赋值 —— undefined</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>object</code> 哈希<br>object是复杂类型，其余都是基本类型，复杂类型由基本类型组成</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">基本类型</span><br><span class="line">    var name = &apos;cmokj&apos;;</span><br><span class="line">    var age = 18;</span><br><span class="line">    var gender = &apos;female&apos;;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">复杂类型</span><br><span class="line">var person &#123;</span><br><span class="line">    &apos;name&apos; : &apos;cmokj&apos;, </span><br><span class="line">    &apos;age&apos; : 18,</span><br><span class="line">    &apos;gender&apos; : &apos;female&apos;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">对象内部嵌套对象</span><br><span class="line">var person &#123;</span><br><span class="line">    name : &apos;cmokj&apos;, </span><br><span class="line">    age : 18,</span><br><span class="line">    gender : &apos;female&apos;，</span><br><span class="line">    child : &#123;name:...&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">对象嵌套对象本身</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">i. js只支持字符串作为key</span><br><span class="line">ii. 申明赋值时，左边单引号可省略，js默认为字符串，但是命名必须符合标识符命名规则；</span><br><span class="line">iii. 取值时，必须要加‘’ 如: </span><br><span class="line">    delete person[&apos;name&apos;];   //undefined</span><br><span class="line">    区别 person.name = undefined;    //&apos;name&apos; in person ? true</span><br><span class="line">iiii. 获取所有key</span><br><span class="line">    for(var key in person)&#123;   //遍历key</span><br><span class="line">        console.log(key);     //key顺序随机</span><br><span class="line">    &#125;</span><br><span class="line">iiiii. typeof x； 返回x的数据类型</span><br><span class="line">    bug1 null返回object</span><br><span class="line">    bug2 function返回function</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/05/23/JS基础-数据类型/" data-id="cjw0o6nxe0000yo8jgng2lni5" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-CSS简单布局" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/05/19/CSS简单布局/" class="article-date">
@@ -162,7 +240,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/05/19/CSS简单布局/" data-id="cjvukog0000023m8jy5xzgt8x" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/05/19/CSS简单布局/" data-id="cjw0o6nxl0001yo8jh5w6pxh6" class="article-share-link">Share</a>
       
       
     </footer>
@@ -267,57 +345,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/05/16/HTML常用标签/" data-id="cjvukofy000003m8jsx5wk8xq" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-用hexo-github搭建博客（上）" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/05/16/用hexo-github搭建博客（上）/" class="article-date">
-  <time datetime="2019-05-16T02:42:12.000Z" itemprop="datePublished">2019-05-16</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/16/用hexo-github搭建博客（上）/">用hexo,github搭建博客（上）</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="搭建-hexo"><a href="#搭建-hexo" class="headerlink" title="搭建 hexo"></a>搭建 hexo</h3><ol>
-<li>安装nodejs</li>
-<li>iTerm进入root用户<br><code>sudo -i</code></li>
-<li>查看版本<br><code>node -v</code><br><code>npm -v</code></li>
-<li>利用npm安装cnpm<br><code>npm install -g cnpm --registry=https://registry.npm.taobao.org</code></li>
-<li>验证cnpm<br><code>cnpm -v</code></li>
-<li>用cnpm安装hexo框架<br><code>cnpm install -g hexo-cli</code></li>
-<li>验证hexo<br><code>hexo -v</code></li>
-<li>建立blog目录</li>
-<li>初始化博客<br><code>sudo hexo init</code></li>
-<li>启动博客，用于预览<br><code>hexo s</code></li>
-<li>新建博客<br><code>hexo n &quot;博客名称&quot;</code></li>
-<li>编辑博客<br><code>vim 博客名称.md</code></li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/05/16/用hexo-github搭建博客（上）/" data-id="cjvukofzw00013m8j0zaayanb" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/05/16/HTML常用标签/" data-id="cjw0o6nxo0002yo8j8rmpu3ap" class="article-share-link">Share</a>
       
       
     </footer>
@@ -373,7 +401,57 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/05/16/用hexo-github搭建博客（中）/" data-id="cjvukog0200033m8jf2xckcrj" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/05/16/用hexo-github搭建博客（中）/" data-id="cjw0o6ny80003yo8jmnt239cm" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-用hexo-github搭建博客（上）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/05/16/用hexo-github搭建博客（上）/" class="article-date">
+  <time datetime="2019-05-16T02:42:12.000Z" itemprop="datePublished">2019-05-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/16/用hexo-github搭建博客（上）/">用hexo,github搭建博客（上）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="搭建-hexo"><a href="#搭建-hexo" class="headerlink" title="搭建 hexo"></a>搭建 hexo</h3><ol>
+<li>安装nodejs</li>
+<li>iTerm进入root用户<br><code>sudo -i</code></li>
+<li>查看版本<br><code>node -v</code><br><code>npm -v</code></li>
+<li>利用npm安装cnpm<br><code>npm install -g cnpm --registry=https://registry.npm.taobao.org</code></li>
+<li>验证cnpm<br><code>cnpm -v</code></li>
+<li>用cnpm安装hexo框架<br><code>cnpm install -g hexo-cli</code></li>
+<li>验证hexo<br><code>hexo -v</code></li>
+<li>建立blog目录</li>
+<li>初始化博客<br><code>sudo hexo init</code></li>
+<li>启动博客，用于预览<br><code>hexo s</code></li>
+<li>新建博客<br><code>hexo n &quot;博客名称&quot;</code></li>
+<li>编辑博客<br><code>vim 博客名称.md</code></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/05/16/用hexo-github搭建博客（上）/" data-id="cjw0o6nyu0005yo8j3cx1wx2y" class="article-share-link">Share</a>
       
       
     </footer>
@@ -418,7 +496,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/05/15/hello-world/" data-id="cjvukog2200043m8je2egasek" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/05/15/hello-world/" data-id="cjw0o6nyb0004yo8jhl4c00vk" class="article-share-link">Share</a>
       
       
     </footer>
@@ -459,6 +537,10 @@
       <ul>
         
           <li>
+            <a href="/2019/05/23/JS基础-数据类型/">JS基础_数据类型</a>
+          </li>
+        
+          <li>
             <a href="/2019/05/19/CSS简单布局/">CSS简单布局</a>
           </li>
         
@@ -467,15 +549,11 @@
           </li>
         
           <li>
-            <a href="/2019/05/16/用hexo-github搭建博客（上）/">用hexo,github搭建博客（上）</a>
-          </li>
-        
-          <li>
             <a href="/2019/05/16/用hexo-github搭建博客（中）/">用hexo,github搭建博客（中）</a>
           </li>
         
           <li>
-            <a href="/2019/05/15/hello-world/">Hello World</a>
+            <a href="/2019/05/16/用hexo-github搭建博客（上）/">用hexo,github搭建博客（上）</a>
           </li>
         
       </ul>
