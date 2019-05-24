@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>JS基础-原型 | cmBLOGj</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="JS基础-原型 全局对象window   EMCAScript没有指定全局对象(global)是window；浏览器早于标准，确认对象一定是window  window属性分为两类全局属性window可省略i. ECMAScript规定 123456789已知常用API：    parseInt    parseFloat    Number()    String()    Boolean()">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS基础-原型">
+<meta property="og:url" content="http://yoursite.com/2019/05/24/JS基础-原型/index.html">
+<meta property="og:site_name" content="cmBLOGj">
+<meta property="og:description" content="JS基础-原型 全局对象window   EMCAScript没有指定全局对象(global)是window；浏览器早于标准，确认对象一定是window  window属性分为两类全局属性window可省略i. ECMAScript规定 123456789已知常用API：    parseInt    parseFloat    Number()    String()    Boolean()">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://i.loli.net/2019/05/24/5ce7b6b5c253f80842.jpeg">
+<meta property="og:updated_time" content="2019-05-24T10:07:31.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS基础-原型">
+<meta name="twitter:description" content="JS基础-原型 全局对象window   EMCAScript没有指定全局对象(global)是window；浏览器早于标准，确认对象一定是window  window属性分为两类全局属性window可省略i. ECMAScript规定 123456789已知常用API：    parseInt    parseFloat    Number()    String()    Boolean()">
+<meta name="twitter:image" content="https://i.loli.net/2019/05/24/5ce7b6b5c253f80842.jpeg">
+  
+    <link rel="alternate" href="/atom.xml" title="cmBLOGj" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">cmBLOGj</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-JS基础-原型" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/05/24/JS基础-原型/" class="article-date">
+  <time datetime="2019-05-24T10:06:19.000Z" itemprop="datePublished">2019-05-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      JS基础-原型
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="JS基础-原型"><a href="#JS基础-原型" class="headerlink" title="JS基础-原型"></a>JS基础-原型</h3><ol>
+<li>全局对象window</li>
+</ol>
+<ul>
+<li><p>EMCAScript没有指定全局对象(global)是window；<br>浏览器早于标准，确认对象一定是window</p>
+</li>
+<li><p>window属性分为两类<br>全局属性window可省略<br>i. ECMAScript规定</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">已知常用API：</span><br><span class="line">    parseInt</span><br><span class="line">    parseFloat</span><br><span class="line">    Number()</span><br><span class="line">    String()</span><br><span class="line">    Boolean()</span><br><span class="line">    Object()</span><br><span class="line">异步API：</span><br><span class="line">window.setTimeout&#123;function(),3000&#125;  //在3s之后执行function()这个函数</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>ii. 私有(Chrome/Firefox)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">alert（弹框提示）</span><br><span class="line">prompt(用户填写)</span><br><span class="line">comfirm(用户确认)</span><br><span class="line">console(开发者打印)</span><br><span class="line">document(文档)  //规范：DOM，由W3C制定</span><br><span class="line">history（浏览器）  //BOM</span><br></pre></td></tr></table></figure></p>
+<ol start="2">
+<li>全局函数</li>
+</ol>
+<ul>
+<li><p>Number</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">- Number(&apos;1&apos;)  // 转换为number</span><br><span class="line">- var n = new Number(1); </span><br><span class="line">// 把1包装成对象，原始数据为1，与n=1;的区别在于内存不同，都由JS之父发明。</span><br><span class="line"></span><br><span class="line">************************************************</span><br><span class="line"></span><br><span class="line">将其他基本类型转换为字符串？ toSring()</span><br><span class="line">基本类型没有属性，原无法使用 n.toSring()转换类型，解决方法：</span><br><span class="line">临时转换，先将n封装为一个对象temp，得到toSring()属性处理数据，转换完成后temp被垃圾回收</span><br><span class="line">        temp = new Number();</span><br><span class="line">        temp.toSring();</span><br><span class="line">所以var n = new Number(1); 被简单的 var n = 1; 代替</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Sring</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- &apos;a&apos;.charCodeAt[0]; // 字符串第0位（a）对应的字符的编码</span><br><span class="line">- (100).toSring(16); // 将十进制的100转换为16进制</span><br><span class="line">- &apos;a&apos;.charCodeAt[0].toString(16);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Boolean</p>
+</li>
+<li>null<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var o1 = &#123;&#125;;</span><br><span class="line">var o2 = new Object();</span><br><span class="line">o1，o2返回的值相同，但是 o1 !== o2，因为指向堆内存的地址不同</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ol start="3">
+<li>对象原型Object.prototype(以下称为共用属性) </li>
+</ol>
+<ul>
+<li><p>每个对象都有toString valueOf这种相同的属性。所以创建共用属性，当对象需要时引用，可以节约内存资源。</p>
+</li>
+<li><p>隐藏属性 _ _ proto _ _<br>#每个对象都有隐藏属性，其value是指向共用/专用属性的地址</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">只引用共用属性</span><br><span class="line">    共用属性地址：add1</span><br><span class="line">    对象的隐藏属性value：add1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">需要引用专有属性（如number的专有属性 toFixed ... ）</span><br><span class="line">    专有属性地址：add2</span><br><span class="line">    对象的隐藏属性value:add2</span><br><span class="line">    如果只需或者还需共用属性，在add2中找到隐藏属性的value，指向add1，再引用add1；</span><br><span class="line"></span><br><span class="line">var o1 = &#123;&#125;;</span><br><span class="line">o1.__proto__ === Object.prototype；</span><br><span class="line"></span><br><span class="line">var n = new Number(1);</span><br><span class="line">n.__proto__. === Number.prototype;</span><br><span class="line">n.__proto__.__protype__ === Object.prototype;</span><br><span class="line"></span><br><span class="line">总结</span><br><span class="line">    对象__proto__ === 函数.prototype</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>图解<br>我们知道，如果hash不被引用时会被浏览器回收，所以共用属性需要被引用防止被当作垃圾回收。<br><img src="https://i.loli.net/2019/05/24/5ce7b6b5c253f80842.jpeg" alt="WechatIMG95.jpeg"></p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/05/24/JS基础-原型/" data-id="cjw1x9tf300002t8jvt5rvhnc" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/05/24/JS基础-数据类型（2）/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">JS基础-数据类型（2）</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/05/24/JS基础-原型/">JS基础-原型</a>
+          </li>
+        
+          <li>
+            <a href="/2019/05/24/JS基础-数据类型（2）/">JS基础-数据类型（2）</a>
+          </li>
+        
+          <li>
+            <a href="/2019/05/23/JS基础-数据类型（1）/">JS基础-数据类型（1）</a>
+          </li>
+        
+          <li>
+            <a href="/2019/05/19/CSS简单布局/">CSS简单布局</a>
+          </li>
+        
+          <li>
+            <a href="/2019/05/16/HTML常用标签/">HTML常用标签</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 cmokj<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
