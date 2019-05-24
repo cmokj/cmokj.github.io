@@ -62,9 +62,83 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-JS基础-数据类型" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-JS基础-数据类型（2）" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/05/23/JS基础-数据类型/" class="article-date">
+    <a href="/2019/05/24/JS基础-数据类型（2）/" class="article-date">
+  <time datetime="2019-05-24T02:30:12.000Z" itemprop="datePublished">2019-05-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/24/JS基础-数据类型（2）/">JS基础-数据类型（2）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="JS基础-数据类型（2）"><a href="#JS基础-数据类型（2）" class="headerlink" title="JS基础-数据类型（2）"></a>JS基础-数据类型（2）</h3><ol>
+<li>类型转换</li>
+</ol>
+<p>1.1 转换为string</p>
+<ul>
+<li>toSrting()<br>null,undefined不可，object返回值错误</li>
+<li>‘’ + x<br>null,undefined都可<br>1 + ‘1’ = ‘11’;</li>
+<li>window.String(x)<br>全局函数，null,undefined都可</li>
+</ul>
+<p>1.2 转换为布尔</p>
+<ul>
+<li>全局函数Boolean()<br>Boolean(0); false<br>Boolean(‘’); false 空字符串<br>Boolean(null); false<br>Boolean(undefined); false<br>Boolean({});true 空数组<br>Boolean(1); true<br>Boolean(‘ ‘); true</li>
+<li>!! x； 取反两次，结果同上<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">JS中取布尔只有五个特殊值（falsy值）：</span><br><span class="line">    number: 0,NaN</span><br><span class="line">    string: &apos;&apos;或&quot;&quot;  //空字符串</span><br><span class="line">    null</span><br><span class="line">    undefined</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>1.3 转换为number</p>
+<ul>
+<li>Number(‘1’)===1;</li>
+<li>parseInt(‘1’,10)===1; 十进制<br>parseInt(‘1s1’)===1;</li>
+<li>parseFloat(‘1.23’)===1.23;</li>
+<li>‘1’-0===1;</li>
+<li>+’1’===1; 取正</li>
+<li>-’1‘===-1；取负</li>
+</ul>
+<p>2.内存图<br><img src="https://i.loli.net/2019/05/24/5ce75658ac39982784.jpeg" alt="WechatIMG92.jpeg"><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var a = &#123;n:1&#125;;</span><br><span class="line">var b = a;</span><br><span class="line">a.x = a = &#123;n:2&#125;;</span><br><span class="line"></span><br><span class="line">alert(a.x);  //undefined</span><br><span class="line">alert(b.x);  //[objtct object]</span><br><span class="line"></span><br><span class="line">解题思路：</span><br><span class="line">    js的赋值运算永远都是从右向左，但是“.”是优先级最高的运算符，所以第三行连续赋值先计算了a.x，即a.x对象已经确定，再将a = &#123;n:2&#125;的赋值结果赋值给a.x。</span><br></pre></td></tr></table></figure></p>
+<ol start="3">
+<li>垃圾回收</li>
+</ol>
+<ul>
+<li><p>如果一个对象没有被引用，它就是垃圾，将被回收。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var fn = function() &#123;</span><br><span class="line">&#125;</span><br><span class="line">document.body.onclick = fn;</span><br><span class="line">fn = null;</span><br><span class="line">fn垃圾？</span><br><span class="line"></span><br><span class="line">解题思路：</span><br><span class="line">    document 引用-&gt; body 引用-&gt; onclick 引用-&gt; fn</span><br><span class="line">    不是垃圾</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>IE bug:内存泄漏<br>一般情况下，页面关闭，document不存在，都变成垃圾，浏览器将进行回收。<br>IE6除外，不把事件标记为垃圾，导致内存资源严重浪费。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">解决方案：在页面关闭时，把所有的事件监听指为null</span><br><span class="line"></span><br><span class="line">    window.onunload = function()&#123;</span><br><span class="line">        document.body.onclick = null</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>深拷贝&amp;浅拷贝<br>var a=1;<br>var b=a;<br>#深拷贝：b改变不影响a<br>#浅拷贝：b改变印象a</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/05/24/JS基础-数据类型（2）/" data-id="cjw1h0r2q0004b08jddrda2p7" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-JS基础-数据类型（1）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/05/23/JS基础-数据类型（1）/" class="article-date">
   <time datetime="2019-05-23T13:01:52.000Z" itemprop="datePublished">2019-05-23</time>
 </a>
     
@@ -76,7 +150,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/23/JS基础-数据类型/">JS基础_数据类型</a>
+      <a class="article-title" href="/2019/05/23/JS基础-数据类型（1）/">JS基础-数据类型（1）</a>
     </h1>
   
 
@@ -84,7 +158,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="JS基础-数据类型"><a href="#JS基础-数据类型" class="headerlink" title="JS基础_数据类型"></a>JS基础_数据类型</h3><ol>
+        <h3 id="JS基础-数据类型（1）"><a href="#JS基础-数据类型（1）" class="headerlink" title="JS基础-数据类型（1）"></a>JS基础-数据类型（1）</h3><ol>
 <li>历史</li>
 </ol>
 <ul>
@@ -124,13 +198,12 @@
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">复杂类型</span><br><span class="line">var person &#123;</span><br><span class="line">    &apos;name&apos; : &apos;cmokj&apos;, </span><br><span class="line">    &apos;age&apos; : 18,</span><br><span class="line">    &apos;gender&apos; : &apos;female&apos;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">对象内部嵌套对象</span><br><span class="line">var person &#123;</span><br><span class="line">    name : &apos;cmokj&apos;, </span><br><span class="line">    age : 18,</span><br><span class="line">    gender : &apos;female&apos;，</span><br><span class="line">    child : &#123;name:...&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">对象嵌套对象本身</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">i. js只支持字符串作为key</span><br><span class="line">ii. 申明赋值时，左边单引号可省略，js默认为字符串，但是命名必须符合标识符命名规则；</span><br><span class="line">iii. 取值时，必须要加‘’ 如: </span><br><span class="line">    delete person[&apos;name&apos;];   //undefined</span><br><span class="line">    区别 person.name = undefined;    //&apos;name&apos; in person ? true</span><br><span class="line">iiii. 获取所有key</span><br><span class="line">    for(var key in person)&#123;   //遍历key</span><br><span class="line">        console.log(key);     //key顺序随机</span><br><span class="line">    &#125;</span><br><span class="line">iiiii. typeof x； 返回x的数据类型</span><br><span class="line">    bug1 null返回object</span><br><span class="line">    bug2 function返回function</span><br></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/05/23/JS基础-数据类型/" data-id="cjw0o6nxe0000yo8jgng2lni5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/05/23/JS基础-数据类型（1）/" data-id="cjw1h0r2j0001b08jnr1gd054" class="article-share-link">Share</a>
       
       
     </footer>
@@ -240,7 +313,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/05/19/CSS简单布局/" data-id="cjw0o6nxl0001yo8jh5w6pxh6" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/05/19/CSS简单布局/" data-id="cjw1h0r2c0000b08j4dvf2o0q" class="article-share-link">Share</a>
       
       
     </footer>
@@ -345,7 +418,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/05/16/HTML常用标签/" data-id="cjw0o6nxo0002yo8j8rmpu3ap" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/05/16/HTML常用标签/" data-id="cjw1h0r2m0002b08jd33hjusr" class="article-share-link">Share</a>
       
       
     </footer>
@@ -401,7 +474,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/05/16/用hexo-github搭建博客（中）/" data-id="cjw0o6ny80003yo8jmnt239cm" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/05/16/用hexo-github搭建博客（中）/" data-id="cjw1h0r2o0003b08jihhwr161" class="article-share-link">Share</a>
       
       
     </footer>
@@ -451,7 +524,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/05/16/用hexo-github搭建博客（上）/" data-id="cjw0o6nyu0005yo8j3cx1wx2y" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/05/16/用hexo-github搭建博客（上）/" data-id="cjw1h0r2s0005b08jiyfiwed9" class="article-share-link">Share</a>
       
       
     </footer>
@@ -496,7 +569,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/05/15/hello-world/" data-id="cjw0o6nyb0004yo8jhl4c00vk" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/05/15/hello-world/" data-id="cjw1h0r2v0006b08j90ue13mk" class="article-share-link">Share</a>
       
       
     </footer>
@@ -537,7 +610,11 @@
       <ul>
         
           <li>
-            <a href="/2019/05/23/JS基础-数据类型/">JS基础_数据类型</a>
+            <a href="/2019/05/24/JS基础-数据类型（2）/">JS基础-数据类型（2）</a>
+          </li>
+        
+          <li>
+            <a href="/2019/05/23/JS基础-数据类型（1）/">JS基础-数据类型（1）</a>
           </li>
         
           <li>
@@ -550,10 +627,6 @@
         
           <li>
             <a href="/2019/05/16/用hexo-github搭建博客（中）/">用hexo,github搭建博客（中）</a>
-          </li>
-        
-          <li>
-            <a href="/2019/05/16/用hexo-github搭建博客（上）/">用hexo,github搭建博客（上）</a>
           </li>
         
       </ul>
