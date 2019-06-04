@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Hello World | mjchen404</title>
+  <title>DOM 事件模型 | mjchen404</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+  <meta name="description" content="历史 浏览器大战，W3C 制定标准。  网景 Navigator =&amp;gt; Firefox 微软 IE =&amp;gt; Edge  DOM 标准  DOM Level 0各个浏览器的几个简单 DOM 事件   onerror =  onclick = 123456789HTML // onclick=&amp;quot;要执行的代码&amp;quot;    &amp;lt;button id=X onclick=&amp;quo">
+<meta name="keywords" content="DOM">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2019/05/15/hello-world/index.html">
+<meta property="og:title" content="DOM 事件模型">
+<meta property="og:url" content="http://yoursite.com/2019/06/04/DOM-事件模型/index.html">
 <meta property="og:site_name" content="mjchen404">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="历史 浏览器大战，W3C 制定标准。  网景 Navigator =&amp;gt; Firefox 微软 IE =&amp;gt; Edge  DOM 标准  DOM Level 0各个浏览器的几个简单 DOM 事件   onerror =  onclick = 123456789HTML // onclick=&amp;quot;要执行的代码&amp;quot;    &amp;lt;button id=X onclick=&amp;quo">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-05-15T14:33:18.000Z">
+<meta property="og:updated_time" content="2019-06-04T09:06:01.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="DOM 事件模型">
+<meta name="twitter:description" content="历史 浏览器大战，W3C 制定标准。  网景 Navigator =&amp;gt; Firefox 微软 IE =&amp;gt; Edge  DOM 标准  DOM Level 0各个浏览器的几个简单 DOM 事件   onerror =  onclick = 123456789HTML // onclick=&amp;quot;要执行的代码&amp;quot;    &amp;lt;button id=X onclick=&amp;quo">
   
     <link rel="alternative" href="/atom.xml" title="mjchen404" type="application/atom+xml">
   
@@ -154,35 +155,75 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-hello-world" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-DOM-事件模型" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Hello World
+      DOM 事件模型
     </h1>
   
 
         
-        <a href="/2019/05/15/hello-world/" class="archive-article-date">
-  	<time datetime="2019-05-15T14:33:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-15</time>
+        <a href="/2019/06/04/DOM-事件模型/" class="archive-article-date">
+  	<time datetime="2019-06-04T09:03:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-04</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+        <h4 id="历史"><a href="#历史" class="headerlink" title="历史"></a>历史</h4><hr>
+<p>浏览器大战，W3C 制定标准。</p>
+<ul>
+<li>网景 Navigator =&gt; Firefox</li>
+<li>微软 IE =&gt; Edge</li>
+</ul>
+<h4 id="DOM-标准"><a href="#DOM-标准" class="headerlink" title="DOM 标准"></a>DOM 标准</h4><hr>
+<ol>
+<li>DOM Level 0<br>各个浏览器的几个简单 DOM 事件</li>
+</ol>
+<ul>
+<li>onerror = </li>
+<li>onclick = <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">HTML // onclick=&quot;要执行的代码&quot;</span><br><span class="line">    &lt;button id=X onclick=&quot;print&quot;&gt;&lt;/button&gt;</span><br><span class="line">    &lt;button id=Y onclick=&quot;print()&quot;&gt;&lt;/button&gt; √</span><br><span class="line">    &lt;button id=Z onclick=&quot;print.call()&quot;&gt;&lt;/button&gt; √</span><br><span class="line"></span><br><span class="line">JavaScript // 用户点击，浏览器执行 X.onclick.call(X,&#123;&#125;)</span><br><span class="line">    X.onclick = print; √ // 类型为函数对象</span><br><span class="line">    Y.onclick = print(); // undefined</span><br><span class="line">    Z.onclick = print.call(); // undefined</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ol start="2">
+<li>DOM Level 1<br>简单的汇总几个 DOM 0 已生成的事件。</li>
+</ol>
+<ul>
+<li>DOM 核心<ul>
+<li>DOM 结构</li>
+<li>DOM 内存管理</li>
+<li>DOM 名称转移</li>
+<li>DOM String</li>
+<li>DOM String 比较</li>
+</ul>
+</li>
+<li>DOM HTML<ul>
+<li>名称管理</li>
+<li>HTMLCollection</li>
+<li>HTMLDocument</li>
+<li>接口</li>
+<li>对象定义</li>
+</ul>
+</li>
+</ul>
+<ol start="3">
+<li>DOM Level 2<br><strong><em>DOM 事件最广泛的标准。</em></strong></li>
+</ol>
+<ul>
+<li>DOM Core</li>
+<li>DOM Views</li>
+<li>DOM Events（单独分区，添加新功能）</li>
+</ul>
+<p>事件语法（click）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// 队列，先进先触发</span><br><span class="line">    xxx.addEventListener(&apos;click&apos;,function() &#123;&#125;) </span><br><span class="line">// 也可以移除，e.g. jQuery 事件的 one() 方法</span><br><span class="line">    xxx.removeEventListener</span><br><span class="line">    </span><br><span class="line">// 属性，唯一，容易被覆盖</span><br><span class="line">xxx.onclick = function() &#123;&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong><em>事件模型</em></strong>-层级关系的触发顺序（click）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;grand&quot;&gt;</span><br><span class="line">    爷爷</span><br><span class="line">    &lt;div id=&quot;father&quot;&gt;</span><br><span class="line">        父亲</span><br><span class="line">        &lt;div id=&quot;son&quot;&gt;</span><br><span class="line">            儿子</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">1. 点击『儿子』，『父亲』、『爷爷』同样被点击</span><br><span class="line">2. 点击『儿子』，三个事件的执行顺序取决于传递的参数</span><br><span class="line">    grand.addEventListener(&apos;click&apos;,function()&#123;&#125;,x);</span><br><span class="line">    # 默认不传值 或 x = （五个 false 值），先执行『儿子』 // 冒泡阶段</span><br><span class="line">    # x = true,先执行『爷爷』 // 捕获阶段</span><br><span class="line">3. 只有一个『儿子』元素，且既是冒泡也是捕获，则按照书写顺序执行</span><br></pre></td></tr></table></figure></p>
+<ol start="4">
+<li>DOM Level 3<br>DOM 事件不再更新。</li>
+</ol>
 
       
 
@@ -212,6 +253,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">DOM</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -262,7 +314,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/05/15/hello-world/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/06/04/DOM-事件模型/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -276,15 +328,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/05/16/用hexo-github搭建博客（上）/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          用hexo,github搭建博客（上）
-        
-      </div>
-    </a>
   
+    <a href="/2019/06/01/简版-jQuery/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">简版 jQuery</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 

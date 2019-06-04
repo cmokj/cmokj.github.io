@@ -152,6 +152,128 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-DOM-事件模型" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/04/DOM-事件模型/">DOM 事件模型</a>
+    </h1>
+  
+
+        
+        <a href="/2019/06/04/DOM-事件模型/" class="archive-article-date">
+  	<time datetime="2019-06-04T09:03:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="历史"><a href="#历史" class="headerlink" title="历史"></a>历史</h4><hr>
+<p>浏览器大战，W3C 制定标准。</p>
+<ul>
+<li>网景 Navigator =&gt; Firefox</li>
+<li>微软 IE =&gt; Edge</li>
+</ul>
+<h4 id="DOM-标准"><a href="#DOM-标准" class="headerlink" title="DOM 标准"></a>DOM 标准</h4><hr>
+<ol>
+<li>DOM Level 0<br>各个浏览器的几个简单 DOM 事件</li>
+</ol>
+<ul>
+<li>onerror = </li>
+<li>onclick = <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">HTML // onclick=&quot;要执行的代码&quot;</span><br><span class="line">    &lt;button id=X onclick=&quot;print&quot;&gt;&lt;/button&gt;</span><br><span class="line">    &lt;button id=Y onclick=&quot;print()&quot;&gt;&lt;/button&gt; √</span><br><span class="line">    &lt;button id=Z onclick=&quot;print.call()&quot;&gt;&lt;/button&gt; √</span><br><span class="line"></span><br><span class="line">JavaScript // 用户点击，浏览器执行 X.onclick.call(X,&#123;&#125;)</span><br><span class="line">    X.onclick = print; √ // 类型为函数对象</span><br><span class="line">    Y.onclick = print(); // undefined</span><br><span class="line">    Z.onclick = print.call(); // undefined</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ol start="2">
+<li>DOM Level 1<br>简单的汇总几个 DOM 0 已生成的事件。</li>
+</ol>
+<ul>
+<li>DOM 核心<ul>
+<li>DOM 结构</li>
+<li>DOM 内存管理</li>
+<li>DOM 名称转移</li>
+<li>DOM String</li>
+<li>DOM String 比较</li>
+</ul>
+</li>
+<li>DOM HTML<ul>
+<li>名称管理</li>
+<li>HTMLCollection</li>
+<li>HTMLDocument</li>
+<li>接口</li>
+<li>对象定义</li>
+</ul>
+</li>
+</ul>
+<ol start="3">
+<li>DOM Level 2<br><strong><em>DOM 事件最广泛的标准。</em></strong></li>
+</ol>
+<ul>
+<li>DOM Core</li>
+<li>DOM Views</li>
+<li>DOM Events（单独分区，添加新功能）</li>
+</ul>
+<p>事件语法（click）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// 队列，先进先触发</span><br><span class="line">    xxx.addEventListener(&apos;click&apos;,function() &#123;&#125;) </span><br><span class="line">// 也可以移除，e.g. jQuery 事件的 one() 方法</span><br><span class="line">    xxx.removeEventListener</span><br><span class="line">    </span><br><span class="line">// 属性，唯一，容易被覆盖</span><br><span class="line">xxx.onclick = function() &#123;&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong><em>事件模型</em></strong>-层级关系的触发顺序（click）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;grand&quot;&gt;</span><br><span class="line">    爷爷</span><br><span class="line">    &lt;div id=&quot;father&quot;&gt;</span><br><span class="line">        父亲</span><br><span class="line">        &lt;div id=&quot;son&quot;&gt;</span><br><span class="line">            儿子</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">1. 点击『儿子』，『父亲』、『爷爷』同样被点击</span><br><span class="line">2. 点击『儿子』，三个事件的执行顺序取决于传递的参数</span><br><span class="line">    grand.addEventListener(&apos;click&apos;,function()&#123;&#125;,x);</span><br><span class="line">    # 默认不传值 或 x = （五个 false 值），先执行『儿子』 // 冒泡阶段</span><br><span class="line">    # x = true,先执行『爷爷』 // 捕获阶段</span><br><span class="line">3. 只有一个『儿子』元素，且既是冒泡也是捕获，则按照书写顺序执行</span><br></pre></td></tr></table></figure></p>
+<ol start="4">
+<li>DOM Level 3<br>DOM 事件不再更新。</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">DOM</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/06/04/DOM-事件模型/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-简版-jQuery" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -838,82 +960,6 @@
 
 
   
-    <article id="post-用hexo-github搭建博客（上）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/16/用hexo-github搭建博客（上）/">用hexo,github搭建博客（上）</a>
-    </h1>
-  
-
-        
-        <a href="/2019/05/16/用hexo-github搭建博客（上）/" class="archive-article-date">
-  	<time datetime="2019-05-16T02:42:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="搭建-hexo"><a href="#搭建-hexo" class="headerlink" title="搭建 hexo"></a>搭建 hexo</h3><ol>
-<li>安装nodejs</li>
-<li>iTerm进入root用户<br><code>sudo -i</code></li>
-<li>查看版本<br><code>node -v</code><br><code>npm -v</code></li>
-<li>利用npm安装cnpm<br><code>npm install -g cnpm --registry=https://registry.npm.taobao.org</code></li>
-<li>验证cnpm<br><code>cnpm -v</code></li>
-<li>用cnpm安装hexo框架<br><code>cnpm install -g hexo-cli</code></li>
-<li>验证hexo<br><code>hexo -v</code></li>
-<li>建立blog目录</li>
-<li>初始化博客<br><code>sudo hexo init</code></li>
-<li>启动博客，用于预览<br><code>hexo s</code></li>
-<li>新建博客<br><code>hexo n &quot;博客名称&quot;</code></li>
-<li>编辑博客<br><code>vim 博客名称.md</code></li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/05/16/用hexo-github搭建博客（上）/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-用hexo-github搭建博客（中）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -967,6 +1013,82 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/05/16/用hexo-github搭建博客（中）/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-用hexo-github搭建博客（上）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/16/用hexo-github搭建博客（上）/">用hexo,github搭建博客（上）</a>
+    </h1>
+  
+
+        
+        <a href="/2019/05/16/用hexo-github搭建博客（上）/" class="archive-article-date">
+  	<time datetime="2019-05-16T02:42:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="搭建-hexo"><a href="#搭建-hexo" class="headerlink" title="搭建 hexo"></a>搭建 hexo</h3><ol>
+<li>安装nodejs</li>
+<li>iTerm进入root用户<br><code>sudo -i</code></li>
+<li>查看版本<br><code>node -v</code><br><code>npm -v</code></li>
+<li>利用npm安装cnpm<br><code>npm install -g cnpm --registry=https://registry.npm.taobao.org</code></li>
+<li>验证cnpm<br><code>cnpm -v</code></li>
+<li>用cnpm安装hexo框架<br><code>cnpm install -g hexo-cli</code></li>
+<li>验证hexo<br><code>hexo -v</code></li>
+<li>建立blog目录</li>
+<li>初始化博客<br><code>sudo hexo init</code></li>
+<li>启动博客，用于预览<br><code>hexo s</code></li>
+<li>新建博客<br><code>hexo n &quot;博客名称&quot;</code></li>
+<li>编辑博客<br><code>vim 博客名称.md</code></li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/05/16/用hexo-github搭建博客（上）/">展开全文 >></a>
         </p>
       
 
@@ -1158,6 +1280,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">DOM</a>
+              </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
