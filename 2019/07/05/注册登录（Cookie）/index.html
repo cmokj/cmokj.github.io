@@ -6,16 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>注册登录（Cookie） | mjchen404</title>
+  <title>注册登录（Cookie）.md | mjchen404</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="article">
-<meta property="og:title" content="注册登录（Cookie）">
+  <meta name="description" content="注册登录 服务器sing_up 路由  浏览器sing_up  完善 HTML + CSS  jQuery 提交事件    阻止默认事件 获取注册内容存入 hash123456789let hash = &amp;#123;&amp;#125;;$(&amp;apos;#singUpForm&amp;apos;).on(&amp;apos;submit&amp;apos;,e =&amp;gt; &amp;#123;    e.preventdefault()">
+<meta name="keywords" content="HTTP Cookie">
+<meta property="og:type" content="article">
+<meta property="og:title" content="注册登录（Cookie）.md">
 <meta property="og:url" content="http://yoursite.com/2019/07/05/注册登录（Cookie）/index.html">
 <meta property="og:site_name" content="mjchen404">
+<meta property="og:description" content="注册登录 服务器sing_up 路由  浏览器sing_up  完善 HTML + CSS  jQuery 提交事件    阻止默认事件 获取注册内容存入 hash123456789let hash = &amp;#123;&amp;#125;;$(&amp;apos;#singUpForm&amp;apos;).on(&amp;apos;submit&amp;apos;,e =&amp;gt; &amp;#123;    e.preventdefault()">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-05T06:41:26.000Z">
+<meta property="og:image" content="https://i.loli.net/2019/07/05/5d1ef05b6656b85368.jpg">
+<meta property="og:updated_time" content="2019-07-05T06:56:55.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="注册登录（Cookie）">
+<meta name="twitter:title" content="注册登录（Cookie）.md">
+<meta name="twitter:description" content="注册登录 服务器sing_up 路由  浏览器sing_up  完善 HTML + CSS  jQuery 提交事件    阻止默认事件 获取注册内容存入 hash123456789let hash = &amp;#123;&amp;#125;;$(&amp;apos;#singUpForm&amp;apos;).on(&amp;apos;submit&amp;apos;,e =&amp;gt; &amp;#123;    e.preventdefault()">
+<meta name="twitter:image" content="https://i.loli.net/2019/07/05/5d1ef05b6656b85368.jpg">
   
     <link rel="alternative" href="/atom.xml" title="mjchen404" type="application/atom+xml">
   
@@ -158,20 +164,80 @@
         
   
     <h1 class="article-title" itemprop="name">
-      注册登录（Cookie）
+      注册登录（Cookie）.md
     </h1>
   
 
         
         <a href="/2019/07/05/注册登录（Cookie）/" class="archive-article-date">
-  	<time datetime="2019-07-05T06:41:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-05</time>
+  	<time datetime="2019-07-05T06:53:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-05</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h2 id="注册登录"><a href="#注册登录" class="headerlink" title="注册登录"></a>注册登录</h2><ol>
+<li><p>服务器<br>sing_up 路由</p>
+</li>
+<li><p>浏览器<br>sing_up  完善 HTML + CSS</p>
+</li>
+<li><p>jQuery 提交事件</p>
+</li>
+</ol>
+<ul>
+<li>阻止默认事件</li>
+<li>获取注册内容存入 hash<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">let hash = &#123;&#125;;</span><br><span class="line">$(&apos;#singUpForm&apos;).on(&apos;submit&apos;,e =&gt; &#123;</span><br><span class="line">    e.preventdefault(); // 阻止默认事件，如刷新</span><br><span class="line">    let need = [&apos;email&apos;,&apos;password&apos;,&apos;passwordConfirmation&apos;];</span><br><span class="line">    need.forEach((name) =&gt; &#123;</span><br><span class="line">        let value = $(&apos;#singUpForm&apos;).find(&apos;[name = $&#123;name&#125;]&apos;).val(); // 表单中的密码</span><br><span class="line">        hash[name] = value;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ol start="4">
+<li>JS 进行简单的表单验证</li>
+</ol>
+<ul>
+<li>e.g. 是否为空字符串/null，两次密码是否匹配等</li>
+<li>前后端分离：JSON</li>
+</ul>
+<ol start="5">
+<li>服务器获取注册信息</li>
+</ol>
+<ul>
+<li>得到字符串<code>email = 1&amp;password = 2</code></li>
+<li>解析字符串，验证 email password 是否和数据库匹配</li>
+</ul>
+<ol start="6">
+<li>注册成功<br>将用户名、密码的数据存入数据库</li>
+</ol>
+<h2 id="正式登录"><a href="#正式登录" class="headerlink" title="正式登录"></a>正式登录</h2><ol>
+<li><p>用户登录<br>用户名、密码与数据库数据进行比对，匹配成功则允许登录</p>
+</li>
+<li><p>登录成功，跳转主页</p>
+</li>
+</ol>
+<ul>
+<li>不需要登录也可跳转主页？<br>只有响应头携带 Cookie 的请求可进入</li>
+<li>主页如何显示用户相关信息<br>响应头中的 Cookie 携带用户相关信息</li>
+</ul>
+<ol start="3">
+<li>Cookie 特点</li>
+</ol>
+<ul>
+<li>服务器通过 <code>set-cookie</code> 响应头设置 cookie</li>
+<li>浏览器得到 Cookie 之后，每次请求都要带上 Cookie</li>
+<li>服务器读取 Cookie 就知道登录信息，e.g. email</li>
+</ul>
+<ol start="4">
+<li>Cookie 问题</li>
+</ol>
+<ul>
+<li>chrome 登录时的 Cookie 其他浏览器是否有相同？<br>无，安全性</li>
+<li>Cookie 存放位置？<br>存放在用户找不到的文件内 :) 浏览器不希望 Cookie 被篡改<br>e.g. windows:C 盘文件</li>
+<li>Cookie 可以伪造？<br>可以，所以 Cookie 有一定的安全隐患，但是后端可以强制限定修改权限</li>
+<li>Cookie 有有效期？<br>有，一般默认 20min，由浏览器决定，但是后端可以强制设置有效期</li>
+</ul>
+<ol start="5">
+<li>总结<br><img src="https://i.loli.net/2019/07/05/5d1ef05b6656b85368.jpg" alt="WechatIMG174.jpg"></li>
+</ol>
+
       
 
       
@@ -200,6 +266,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">HTTP Cookie</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -393,6 +470,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">DOM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">HTTP Cookie</a>
               </li>
              
               <li class="article-tag-list-item">
