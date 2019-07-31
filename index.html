@@ -152,6 +152,105 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-理解JavaScript中的this" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/01/理解JavaScript中的this/">理解 JavaScript 中的 this</a>
+    </h1>
+  
+
+        
+        <a href="/2019/08/01/理解JavaScript中的this/" class="archive-article-date">
+  	<time datetime="2019-07-31T22:16:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="this-是什么"><a href="#this-是什么" class="headerlink" title="this 是什么"></a>this 是什么</h2><ol>
+<li>this 就是 call 一个函数时传的第一个参数</li>
+<li>如果调用形式不是 call 形式，转换代码</li>
+</ol>
+<h2 id="call-正常语法"><a href="#call-正常语法" class="headerlink" title="call 正常语法"></a>call 正常语法</h2><ol>
+<li>语法<br><code>fun.call(context,p1,p2)</code><br>context = 传的第一个参数</li>
+</ol>
+<h2 id="fun-p1-p2-语法"><a href="#fun-p1-p2-语法" class="headerlink" title="fun(p1,p2) 语法"></a>fun(p1,p2) 语法</h2><ol>
+<li>等价于<br><code>fun.call(undefined,p1,p2)</code></li>
+<li>浏览器规定，context 为 null 或 undefined</li>
+</ol>
+<ul>
+<li>非严格模式：<br>context = window 对象</li>
+<li>严格模式：<br>context = undefined</li>
+</ul>
+<h2 id="obj-child-method-p1-p2-语法"><a href="#obj-child-method-p1-p2-语法" class="headerlink" title="obj.child.method(p1,p2) 语法"></a>obj.child.method(p1,p2) 语法</h2><ol>
+<li>等价于<br><code>obj.child.method.call(obj,p1,p2)</code><br>context = obj.child</li>
+</ol>
+<h2 id="语法"><a href="#语法" class="headerlink" title="[] 语法"></a>[] 语法</h2><ol>
+<li><p>以下打印的 this 是什么？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function fn() &#123; console.log(this); &#125;</span><br><span class="line">var arr = [fn,fn2];</span><br><span class="line">arr[0]()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>设想 arr[0] () = arr.0() (语法错误)<br>=&gt; arr.0.call(arr)<br>=&gt; this = arr</p>
+</li>
+</ol>
+<p><a href="https://zhuanlan.zhihu.com/p/23804247" target="_blank" rel="noopener">参考：https://zhuanlan.zhihu.com/p/23804247</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/08/01/理解JavaScript中的this/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-移动端页面（响应式）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1210,88 +1309,6 @@
 
 
   
-    <article id="post-用hexo-github搭建博客（中）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/16/用hexo-github搭建博客（中）/">用hexo,github搭建博客（中）</a>
-    </h1>
-  
-
-        
-        <a href="/2019/05/16/用hexo-github搭建博客（中）/" class="archive-article-date">
-  	<time datetime="2019-05-16T02:42:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="将博客部署到github"><a href="#将博客部署到github" class="headerlink" title="将博客部署到github"></a>将博客部署到github</h3><ol>
-<li>配置github<br><code>进入https://github.com/settings/key</code></li>
-<li>点击<code>New SSH key</code>输入Title&amp;Key，但是目前我们没有Key，接着往下看</li>
-<li>把现有的shh key都删掉<br><code>rm -rf ~/.ssh/*</code></li>
-<li>运行<br><code>ssh -keygen -t rsa -b 4096 -C&#39;你的邮箱&#39;</code></li>
-<li>回车四次</li>
-<li>运行命令行得到密钥串，复制<br><code>cat ~/.ssh/id_rsa.pub</code></li>
-<li>回到第二步，将复制的密钥串填入，点击Add SSH KEY</li>
-<li>运行命令行建立连接<br><code>ssh -T git@github.com</code></li>
-<li>如果看到<code>Permission denied(publickey)</code>说明你失败惹，请回到第一步大不了重新再来；否则你就成功啦～撒花～</li>
-<li>在GitHub新建仓库，且仓库的命名必须是以下格式，下一步记得点SSH！<br><code>你的github用户名.github.io</code></li>
-<li>在本地blog目录下安装插件<br><code>cnpm install --save hexo-deployer-git</code></li>
-<li>ls查看当前目录下所有文件及目录，找到_config.yml文件,用命令行打开<br><code>vim _config.yml</code></li>
-<li><p>最底部找到Deployment配置，进行配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">type:git</span><br><span class="line">repo:你的仓库地址</span><br><span class="line">branch:master</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>部署到远端<br>hexo d</p>
-</li>
-<li>搭建成功！真棒棒！</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/05/16/用hexo-github搭建博客（中）/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1389,11 +1406,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">DOM</a>
+                <a href="javascript:void(0)" class="js-tag color2">HTTP Cookie</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">HTTP Cookie</a>
+                <a href="javascript:void(0)" class="js-tag color4">DOM</a>
               </li>
              
               <li class="article-tag-list-item">

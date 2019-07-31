@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>HTML常用标签 | mjchen404</title>
+  <title>理解 JavaScript 中的 this | mjchen404</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="HTML常用标签 HTML中特殊符号要写成转义符号 &amp;lt;iframe&amp;gt;   作用：在当前页面里嵌入一个页面 iframe可以拥有一个name，a标签的target可以通过name指向这个iframe12&amp;lt;iframe name=xxx src=&amp;quot;#&amp;quot; frameborder=&amp;quot;0&amp;quot;&amp;gt;&amp;lt;/iframe&amp;gt;&amp;lt;a target">
+  <meta name="description" content="this 是什么 this 就是 call 一个函数时传的第一个参数 如果调用形式不是 call 形式，转换代码  call 正常语法 语法fun.call(context,p1,p2)context = 传的第一个参数  fun(p1,p2) 语法 等价于fun.call(undefined,p1,p2) 浏览器规定，context 为 null 或 undefined   非严格模式：cont">
+<meta name="keywords" content="JavaScript">
 <meta property="og:type" content="article">
-<meta property="og:title" content="HTML常用标签">
-<meta property="og:url" content="http://yoursite.com/2019/05/16/HTML常用标签/index.html">
+<meta property="og:title" content="理解 JavaScript 中的 this">
+<meta property="og:url" content="http://yoursite.com/2019/08/01/理解JavaScript中的this/index.html">
 <meta property="og:site_name" content="mjchen404">
-<meta property="og:description" content="HTML常用标签 HTML中特殊符号要写成转义符号 &amp;lt;iframe&amp;gt;   作用：在当前页面里嵌入一个页面 iframe可以拥有一个name，a标签的target可以通过name指向这个iframe12&amp;lt;iframe name=xxx src=&amp;quot;#&amp;quot; frameborder=&amp;quot;0&amp;quot;&amp;gt;&amp;lt;/iframe&amp;gt;&amp;lt;a target">
+<meta property="og:description" content="this 是什么 this 就是 call 一个函数时传的第一个参数 如果调用形式不是 call 形式，转换代码  call 正常语法 语法fun.call(context,p1,p2)context = 传的第一个参数  fun(p1,p2) 语法 等价于fun.call(undefined,p1,p2) 浏览器规定，context 为 null 或 undefined   非严格模式：cont">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-05-16T12:05:21.000Z">
+<meta property="og:updated_time" content="2019-07-31T22:22:34.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="HTML常用标签">
-<meta name="twitter:description" content="HTML常用标签 HTML中特殊符号要写成转义符号 &amp;lt;iframe&amp;gt;   作用：在当前页面里嵌入一个页面 iframe可以拥有一个name，a标签的target可以通过name指向这个iframe12&amp;lt;iframe name=xxx src=&amp;quot;#&amp;quot; frameborder=&amp;quot;0&amp;quot;&amp;gt;&amp;lt;/iframe&amp;gt;&amp;lt;a target">
+<meta name="twitter:title" content="理解 JavaScript 中的 this">
+<meta name="twitter:description" content="this 是什么 this 就是 call 一个函数时传的第一个参数 如果调用形式不是 call 形式，转换代码  call 正常语法 语法fun.call(context,p1,p2)context = 传的第一个参数  fun(p1,p2) 语法 等价于fun.call(undefined,p1,p2) 浏览器规定，context 为 null 或 undefined   非严格模式：cont">
   
     <link rel="alternative" href="/atom.xml" title="mjchen404" type="application/atom+xml">
   
@@ -154,95 +155,52 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-HTML常用标签" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-理解JavaScript中的this" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      HTML常用标签
+      理解 JavaScript 中的 this
     </h1>
   
 
         
-        <a href="/2019/05/16/HTML常用标签/" class="archive-article-date">
-  	<time datetime="2019-05-16T12:00:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-16</time>
+        <a href="/2019/08/01/理解JavaScript中的this/" class="archive-article-date">
+  	<time datetime="2019-07-31T22:16:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-01</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="HTML常用标签"><a href="#HTML常用标签" class="headerlink" title="HTML常用标签"></a>HTML常用标签</h3><ol>
-<li>HTML中特殊符号要写成转义符号</li>
-<li><code>&lt;iframe&gt;</code></li>
+        <h2 id="this-是什么"><a href="#this-是什么" class="headerlink" title="this 是什么"></a>this 是什么</h2><ol>
+<li>this 就是 call 一个函数时传的第一个参数</li>
+<li>如果调用形式不是 call 形式，转换代码</li>
+</ol>
+<h2 id="call-正常语法"><a href="#call-正常语法" class="headerlink" title="call 正常语法"></a>call 正常语法</h2><ol>
+<li>语法<br><code>fun.call(context,p1,p2)</code><br>context = 传的第一个参数</li>
+</ol>
+<h2 id="fun-p1-p2-语法"><a href="#fun-p1-p2-语法" class="headerlink" title="fun(p1,p2) 语法"></a>fun(p1,p2) 语法</h2><ol>
+<li>等价于<br><code>fun.call(undefined,p1,p2)</code></li>
+<li>浏览器规定，context 为 null 或 undefined</li>
 </ol>
 <ul>
-<li>作用：在当前页面里嵌入一个页面</li>
-<li>iframe可以拥有一个name，a标签的target可以通过name指向这个iframe<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;iframe name=xxx src=&quot;#&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;</span><br><span class="line">&lt;a target=xxx href=&quot;http://qq.com&quot;&gt;QQ&lt;/a&gt;</span><br></pre></td></tr></table></figure>
-</li>
+<li>非严格模式：<br>context = window 对象</li>
+<li>严格模式：<br>context = undefined</li>
 </ul>
-<p><em>src也可以是相对路径</em></p>
-<ul>
-<li>现代前端开发中，iframe很少用</li>
-</ul>
-<ol start="3">
-<li><code>&lt;a&gt;</code></li>
+<h2 id="obj-child-method-p1-p2-语法"><a href="#obj-child-method-p1-p2-语法" class="headerlink" title="obj.child.method(p1,p2) 语法"></a>obj.child.method(p1,p2) 语法</h2><ol>
+<li>等价于<br><code>obj.child.method.call(obj,p1,p2)</code><br>context = obj.child</li>
 </ol>
-<ul>
-<li>作用：跳转页面（HTTP GET请求）</li>
-<li><code>&lt;a href=&quot;http://qq.com&quot; target=&quot;x&quot;&gt;QQ&lt;/a&gt;</code><ol>
-<li>x= _blank，空页面打开</li>
-<li>x= _self，当前页面打开</li>
-<li>x= _parent，父页面打开，结合iframe</li>
-<li>x= _top，祖先页面打开，结合iframe</li>
-</ol>
+<h2 id="语法"><a href="#语法" class="headerlink" title="[] 语法"></a>[] 语法</h2><ol>
+<li><p>以下打印的 this 是什么？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function fn() &#123; console.log(this); &#125;</span><br><span class="line">var arr = [fn,fn2];</span><br><span class="line">arr[0]()</span><br></pre></td></tr></table></figure>
 </li>
-<li>download属性<br><code>&lt;a href=&quot;http://qq/com&quot; download&gt;下载&lt;/a&gt;</code><br>是否download决定因素：<ol>
-<li>content-type:application/octet-stream</li>
-<li>在a标签中加入download属性强制下载</li>
-</ol>
-</li>
-<li><p>href属性</p>
-<ol>
-<li><code>href=&quot;http://qq.com&quot;</code>是一个使用http协议的，域名为qq.com的路径</li>
-<li><code>href=&quot;qq.com&quot;</code>是一个文件，浏览器根据文件的协议打开</li>
-<li><strong><em>写HTML时不能用file协议</em></strong>,<em>比如index.html，那就无法预览，因此需要安装工具http-server，无协议绝对地址，主动继承当前页面的协议</em><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm i -g http-server</span><br><span class="line">http-server -c-1</span><br></pre></td></tr></table></figure>
+<li><p>设想 arr[0] () = arr.0() (语法错误)<br>=&gt; arr.0.call(arr)<br>=&gt; this = arr</p>
 </li>
 </ol>
-<p>=  由2演变<code>href=&quot;//qq.com&quot;</code></p>
-<ol start="4">
-<li><code>href=&quot;相对路径&quot;</code></li>
-<li><code>href=&quot;#锚点&quot;</code>，不发起请求，是页面内的跳转</li>
-<li><code>href=&quot;?name描述&quot;</code></li>
-<li>伪协议<code>href=&quot;javascript:;&quot;</code><br>点击a标签，什么也不做。<em>用#页面会跳转，用空内容页面会刷新发送请求</em></li>
-</ol>
-</li>
-</ul>
-<ol start="4">
-<li><code>&lt;form&gt;</code></li>
-</ol>
-<ul>
-<li>作用：跳转页面（HTTP POST请求）</li>
-<li>提交内容会作为post请求的第四部分</li>
-<li><p>form表单中需要提交按钮，否则无法提交表单</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;form action=&quot;index.html&quot; methon=&quot;post&quot;&gt;</span><br><span class="line">    &lt;input type=&quot;submit&quot; value=&quot;提交&quot;&gt;</span><br><span class="line">    &lt;input type=&quot;text&quot; name=&quot;username&quot;&gt;</span><br><span class="line">    &lt;input type=&quot;password&quot; name=&quot;password&quot;&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>target属性</p>
-</li>
-</ul>
-<ol start="5">
-<li><code>&lt;input&gt;/&lt;button&gt;</code></li>
-</ol>
-<ul>
-<li><button>没有写type，为提交按钮；否则按type类型</button></li>
-<li><input>type=submit时，为提交按钮</li>
-<li>用label标签包围描述与文本框，为一组，这样选中描述文字，即可选中文本狂<br><code>&lt;label&gt;用户名：&lt;input type=&quot;text&quot; name=&quot;xxx&quot;&gt;&lt;label&gt;</code></li>
-</ul>
-<ol start="6">
-<li><code>&lt;table&gt;</code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;table&gt;</span><br><span class="line">    &lt;colgroup&gt;</span><br><span class="line">        &lt;col width=100&gt; //设置每一列的宽度，共三列</span><br><span class="line">        &lt;col width=100&gt;</span><br><span class="line">        &lt;col width=100&gt;</span><br><span class="line">    &lt;/colgroup&gt;</span><br><span class="line">    &lt;thead&gt;</span><br><span class="line">        &lt;tr&gt;</span><br><span class="line">            &lt;th&gt;表头&lt;/th&gt;&lt;th&gt;&lt;/th&gt;&lt;th&gt;&lt;/th&gt;</span><br><span class="line">        &lt;/tr&gt;</span><br><span class="line">    &lt;/thead&gt;</span><br><span class="line">    &lt;tbody&gt;</span><br><span class="line">        &lt;tr&gt;</span><br><span class="line">            &lt;td&gt;列表项&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;</span><br><span class="line">        &lt;/tr&gt;</span><br><span class="line">    &lt;/tbody&gt;</span><br><span class="line">    &lt;tfoot&gt;</span><br><span class="line">    &lt;/tfoot&gt; //head body foot顺序打乱浏览器仍会按照head-body-foot的顺序解析</span><br><span class="line">&lt;/table&gt;</span><br></pre></td></tr></table></figure></li>
-</ol>
+<p><a href="https://zhuanlan.zhihu.com/p/23804247" target="_blank" rel="noopener">参考：https://zhuanlan.zhihu.com/p/23804247</a></p>
 
       
 
@@ -272,6 +230,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -322,7 +291,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/05/16/HTML常用标签/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/08/01/理解JavaScript中的this/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -336,18 +305,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/05/19/CSS简单布局/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          CSS简单布局
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/05/16/用hexo-github搭建博客（上）/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">用hexo,github搭建博客（上）</div>
+    <a href="/2019/07/19/移动端页面（响应式）/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">移动端页面（响应式）</div>
       <i class="icon-circle-right"></i>
     </a>
   

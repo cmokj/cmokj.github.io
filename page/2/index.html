@@ -228,6 +228,88 @@
 
 
   
+    <article id="post-用hexo-github搭建博客（中）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/16/用hexo-github搭建博客（中）/">用hexo,github搭建博客（中）</a>
+    </h1>
+  
+
+        
+        <a href="/2019/05/16/用hexo-github搭建博客（中）/" class="archive-article-date">
+  	<time datetime="2019-05-16T02:42:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="将博客部署到github"><a href="#将博客部署到github" class="headerlink" title="将博客部署到github"></a>将博客部署到github</h3><ol>
+<li>配置github<br><code>进入https://github.com/settings/key</code></li>
+<li>点击<code>New SSH key</code>输入Title&amp;Key，但是目前我们没有Key，接着往下看</li>
+<li>把现有的shh key都删掉<br><code>rm -rf ~/.ssh/*</code></li>
+<li>运行<br><code>ssh -keygen -t rsa -b 4096 -C&#39;你的邮箱&#39;</code></li>
+<li>回车四次</li>
+<li>运行命令行得到密钥串，复制<br><code>cat ~/.ssh/id_rsa.pub</code></li>
+<li>回到第二步，将复制的密钥串填入，点击Add SSH KEY</li>
+<li>运行命令行建立连接<br><code>ssh -T git@github.com</code></li>
+<li>如果看到<code>Permission denied(publickey)</code>说明你失败惹，请回到第一步大不了重新再来；否则你就成功啦～撒花～</li>
+<li>在GitHub新建仓库，且仓库的命名必须是以下格式，下一步记得点SSH！<br><code>你的github用户名.github.io</code></li>
+<li>在本地blog目录下安装插件<br><code>cnpm install --save hexo-deployer-git</code></li>
+<li>ls查看当前目录下所有文件及目录，找到_config.yml文件,用命令行打开<br><code>vim _config.yml</code></li>
+<li><p>最底部找到Deployment配置，进行配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">type:git</span><br><span class="line">repo:你的仓库地址</span><br><span class="line">branch:master</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>部署到远端<br>hexo d</p>
+</li>
+<li>搭建成功！真棒棒！</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/05/16/用hexo-github搭建博客（中）/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -396,11 +478,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">DOM</a>
+                <a href="javascript:void(0)" class="js-tag color2">HTTP Cookie</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">HTTP Cookie</a>
+                <a href="javascript:void(0)" class="js-tag color4">DOM</a>
               </li>
              
               <li class="article-tag-list-item">
