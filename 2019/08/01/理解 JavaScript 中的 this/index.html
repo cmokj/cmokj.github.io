@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2019/8 | mjchen404</title>
+  <title>理解 JavaScript 中的 this | mjchen404</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="mjchen404">
-<meta property="og:url" content="http://yoursite.com/archives/2019/08/index.html">
+  <meta name="description" content="this 是什么 this 就是 call 一个函数时传的第一个参数 如果调用形式不是 call 形式，转换代码  call 正常语法 语法fun.call(context,p1,p2)context = 传的第一个参数  fun(p1,p2) 语法 等价于fun.call(undefined,p1,p2) 浏览器规定，context 为 null 或 undefined   非严格模式：cont">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="理解 JavaScript 中的 this">
+<meta property="og:url" content="http://yoursite.com/2019/08/01/理解 JavaScript 中的 this/index.html">
 <meta property="og:site_name" content="mjchen404">
+<meta property="og:description" content="this 是什么 this 就是 call 一个函数时传的第一个参数 如果调用形式不是 call 形式，转换代码  call 正常语法 语法fun.call(context,p1,p2)context = 传的第一个参数  fun(p1,p2) 语法 等价于fun.call(undefined,p1,p2) 浏览器规定，context 为 null 或 undefined   非严格模式：cont">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-07-31T22:28:16.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="mjchen404">
+<meta name="twitter:title" content="理解 JavaScript 中的 this">
+<meta name="twitter:description" content="this 是什么 this 就是 call 一个函数时传的第一个参数 如果调用形式不是 call 形式，转换代码  call 正常语法 语法fun.call(context,p1,p2)context = 传的第一个参数  fun(p1,p2) 语法 等价于fun.call(undefined,p1,p2) 浏览器规定，context 为 null 或 undefined   非严格模式：cont">
   
     <link rel="alternative" href="/atom.xml" title="mjchen404" type="application/atom+xml">
   
@@ -150,36 +155,81 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-理解 JavaScript 中的 this" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/01/理解 JavaScript 中的 this/" class="archive-article-date">
-  	<time datetime="2019-07-31T22:16:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-01</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/01/理解 JavaScript 中的 this/">理解 JavaScript 中的 this</a>
+    <h1 class="article-title" itemprop="name">
+      理解 JavaScript 中的 this
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2019/08/01/理解 JavaScript 中的 this/" class="archive-article-date">
+  	<time datetime="2019-07-31T22:16:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="this-是什么"><a href="#this-是什么" class="headerlink" title="this 是什么"></a>this 是什么</h2><ol>
+<li>this 就是 call 一个函数时传的第一个参数</li>
+<li>如果调用形式不是 call 形式，转换代码</li>
+</ol>
+<h2 id="call-正常语法"><a href="#call-正常语法" class="headerlink" title="call 正常语法"></a>call 正常语法</h2><ol>
+<li>语法<br><code>fun.call(context,p1,p2)</code><br>context = 传的第一个参数</li>
+</ol>
+<h2 id="fun-p1-p2-语法"><a href="#fun-p1-p2-语法" class="headerlink" title="fun(p1,p2) 语法"></a>fun(p1,p2) 语法</h2><ol>
+<li>等价于<br><code>fun.call(undefined,p1,p2)</code></li>
+<li>浏览器规定，context 为 null 或 undefined</li>
+</ol>
+<ul>
+<li>非严格模式：<br>context = window 对象</li>
+<li>严格模式：<br>context = undefined</li>
+</ul>
+<h2 id="obj-child-method-p1-p2-语法"><a href="#obj-child-method-p1-p2-语法" class="headerlink" title="obj.child.method(p1,p2) 语法"></a>obj.child.method(p1,p2) 语法</h2><ol>
+<li>等价于<br><code>obj.child.method.call(obj.child,p1,p2)</code><br>context = obj.child</li>
+</ol>
+<h2 id="语法"><a href="#语法" class="headerlink" title="[] 语法"></a>[] 语法</h2><ol>
+<li><p>以下打印的 this 是什么？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function fn() &#123; console.log(this); &#125;</span><br><span class="line">var arr = [fn,fn2];</span><br><span class="line">arr[0]()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>设想 arr[0] () = arr.0() (语法错误)<br>=&gt; arr.0.call(arr)<br>=&gt; this = arr</p>
+</li>
+</ol>
+<p><a href="https://zhuanlan.zhihu.com/p/23804247" target="_blank" rel="noopener">参考：https://zhuanlan.zhihu.com/p/23804247</a></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -191,19 +241,106 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/08/01/理解 JavaScript 中的 this/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2019/07/19/移动端页面（响应式）/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">移动端页面（响应式）</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -226,8 +363,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
